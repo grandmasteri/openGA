@@ -46,3 +46,14 @@ jobs:
       run: cd ci-test-cases && make so-clang
     - name: CI clang compatibility check multi-objective 
       run: cd ci-test-cases && make mo-clang
+
+  windows-compatibility:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: CI msbuild compatibility check single-objective 
+      run: cd ci-test-cases && make so-msbuild
+    - name: CI msbuild compatibility check multi-objective 
+      run: cd ci-test-cases && make mo-msbuild

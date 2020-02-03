@@ -55,3 +55,9 @@ so-clang:
 mo-clang:
 	clang++ $(CFLAGS_R) $(CLANG_CFLAGS) $(SRC_M) -o $(OUT)
 	$(OUT)
+
+so-msbuild:
+	msbuild.exe examples/so-1/example_so1.cpp /std:latest /I ../src
+
+mo-msbuild:
+	msbuild.exe examples/mo-1/example_mo1.cpp /std:latest /I ../src
