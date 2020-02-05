@@ -6,7 +6,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v1
     - name: ex_so1
@@ -49,11 +49,24 @@ jobs:
 
   windows-compatibility:
 
-    runs-on: windows-latest
+    runs-on: windows-2019
 
     steps:
     - uses: actions/checkout@v1
     - name: CI msbuild compatibility check single-objective 
-      run: cd ci-test-cases & make so-msbuild
+      run: |
+        cmd.exe /C '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"'
+        cmd.exe /C '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /Yc"stdafx.afx" /Yu"stdafx.h" /Tp"stdafx.afx" /FI"stdafx.h" /I ../src examples/so-1/example_so1.cpp'
+        # cmd.exe /C '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /Yc"stdafx.pch" /Yu"stdafx.h" /FI"stdafx.h" /I ../src examples/so-1/example_so1.cpp'
+        # cmd.exe /C 'python.exe --version'
+        # cmd.exe /C 'python.exe aaa.py'
+        # cmd.exe /C 'dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\"'
+        # cmd.exe /C 'dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\"'
+        # cmd.exe /C 'dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\VS\"'
+        # cmd.exe /C 'dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\"'
+        # cmd.exe /C 'dir "c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\15.0\"'
+        # cmd.exe /C 'dir'
+        # cmd.exe /C '"%VCINSTALLDIR%\bin\cl.exe" /std:latest /I ../src examples/so-1/example_so1.cpp'
     - name: CI msbuild compatibility check multi-objective 
-      run: cd ci-test-cases & make mo-msbuild
+      run: |
+        "c:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\msbuild.exe" examples/mo-1/example_mo1.cpp /std:latest /I ../src
