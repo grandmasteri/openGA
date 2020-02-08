@@ -5,47 +5,47 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v1
-    - name: ex_so1
-      run: make ex_so1
-    - name: ex_so_rastrigin
-      run: make ex_so_rastrigin
-    - name: ex_so_bind
-      run: make ex_so_bind
-    - name: ex_mo1
-      run: make ex_mo1
-    - name: ex_mo_dtlz2
-      run: make ex_mo_dtlz2
-    - name: ex_init_solutions
-      run: make ex_init_solutions
+    # steps:
+    # - uses: actions/checkout@v1
+    # - name: ex_so1
+    #   run: make ex_so1
+    # - name: ex_so_rastrigin
+    #   run: make ex_so_rastrigin
+    # - name: ex_so_bind
+    #   run: make ex_so_bind
+    # - name: ex_mo1
+    #   run: make ex_mo1
+    # - name: ex_mo_dtlz2
+    #   run: make ex_mo_dtlz2
+    # - name: ex_init_solutions
+    #   run: make ex_init_solutions
 
-    - name: CI skim test single-objective 
-      run: cd ci-test-cases && make so-skim
-    - name: CI skim test multi-objective 
-      run: cd ci-test-cases && make mo-skim
+    # - name: CI skim test single-objective 
+    #   run: cd ci-test-cases && make so-skim
+    # - name: CI skim test multi-objective 
+    #   run: cd ci-test-cases && make mo-skim
 
-    - name: CI address sanitizer test single-objective 
-      run: cd ci-test-cases && make so-sanitizer-address
-    - name: CI address sanitizer test multi-objective 
-      run: cd ci-test-cases && make mo-sanitizer-address
+    # - name: CI address sanitizer test single-objective 
+    #   run: cd ci-test-cases && make so-sanitizer-address
+    # - name: CI address sanitizer test multi-objective 
+    #   run: cd ci-test-cases && make mo-sanitizer-address
 
-    - name: CI thread sanitizer test single-objective 
-      run: cd ci-test-cases && make so-sanitizer-thread
-    - name: CI thread sanitizer test multi-objective 
-      run: cd ci-test-cases && make mo-sanitizer-thread
+    # - name: CI thread sanitizer test single-objective 
+    #   run: cd ci-test-cases && make so-sanitizer-thread
+    # - name: CI thread sanitizer test multi-objective 
+    #   run: cd ci-test-cases && make mo-sanitizer-thread
 
-    - name: CI UB sanitizer test single-objective 
-      run: cd ci-test-cases && make so-sanitizer-ub
-    - name: CI UB sanitizer test multi-objective 
-      run: cd ci-test-cases && make mo-sanitizer-ub
+    # - name: CI UB sanitizer test single-objective 
+    #   run: cd ci-test-cases && make so-sanitizer-ub
+    # - name: CI UB sanitizer test multi-objective 
+    #   run: cd ci-test-cases && make mo-sanitizer-ub
 
-    - name: CI clang compatibility check single-objective 
-      run: cd ci-test-cases && make so-clang
-    - name: CI clang compatibility check multi-objective 
-      run: cd ci-test-cases && make mo-clang
+    # - name: CI clang compatibility check single-objective 
+    #   run: cd ci-test-cases && make so-clang
+    # - name: CI clang compatibility check multi-objective 
+    #   run: cd ci-test-cases && make mo-clang
 
   windows-compatibility:
 
@@ -72,11 +72,17 @@ jobs:
     runs-on: windows-2019
     steps:
     - uses: actions/checkout@v1
-    - name: CI msbuild compatibility check single-objective 
-      run: |
+    - name: mkdir
+      run:
         cmd.exe /c mkdir include
+    - name: copy include
+      run:
         cmd.exe /c copy "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
+    - name: copy cl.exe
+      run:
         cmd.exe /c copy "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" .
+    - name: run cl.exe
+      run:
         cmd.exe /c 'cl.exe" /std:c++latest /I ../src /I ./include examples/so-1/example_so1.cpp'
         # cmd.exe /c '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples/so-1/example_so1.cpp'
         # cmd.exe /c "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat" "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples/so-1/example_so1.cpp
