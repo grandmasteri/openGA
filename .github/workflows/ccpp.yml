@@ -75,6 +75,27 @@ jobs:
     - name: mkdir
       run:
         cmd.exe /c mkdir include
+    - name: dir include 1
+      run:
+        cmd.exe /c dir "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\*" include
+    - name: dir include 2
+      run:
+        cmd.exe /c dir "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\*" include
+    - name: dir include 3
+      run:
+        cmd.exe /c dir "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\*" include
+    - name: dir include 4
+      run:
+        cmd.exe /c dir "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\*" include
+    - name: dir include 5
+      run:
+        cmd.exe /c dir "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\*" include
+    - name: dir include 6
+      run:
+        cmd.exe /c dir "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
+    - name: dir include 7
+      run:
+        cmd.exe /c dir "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
     - name: copy include
       run:
         cmd.exe /c copy "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
