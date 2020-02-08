@@ -74,9 +74,9 @@ jobs:
     - uses: actions/checkout@v1
     - name: CI msbuild compatibility check single-objective 
       run: |
-        mkdir include
-        copy "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
-        copy "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" .
+        cmd.exe /c mkdir include
+        cmd.exe /c copy "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
+        cmd.exe /c copy "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" .
         cmd.exe /c 'cl.exe" /std:c++latest /I ../src /I ./include examples/so-1/example_so1.cpp'
         # cmd.exe /c '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples/so-1/example_so1.cpp'
         # cmd.exe /c "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat" "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples/so-1/example_so1.cpp
