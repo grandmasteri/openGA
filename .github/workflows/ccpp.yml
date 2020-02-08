@@ -55,7 +55,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: CI msbuild compatibility check single-objective 
       run: |
-        cmd.exe /C '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "(C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\)" examples\so-1\example_so1.cpp'
+        cmd.exe /C '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples\so-1\example_so1.cpp'
         # cmd.exe /C 'python.exe --version'
         # cmd.exe /C 'python.exe aaa.py'
         # cmd.exe /C 'dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\SDK\include"'
@@ -71,13 +71,7 @@ jobs:
   rem-test0:
     runs-on: windows-2019
     steps:
-      - name: Check out source code
-        uses: actions/checkout@v1
-      - name: Download Internet
-        run: npm install
-      - name: Enable Developer Command Prompt
-        uses: ./
-      - name: Compile and run some C code
-        run: |
-          cl.exe hello.c
-          hello.exe
+    - uses: actions/checkout@v1
+    - name: CI msbuild compatibility check single-objective 
+      run: |
+        C:\WINDOWS\system32\WindowsPowerShell\v1.0\powershell.exe  -Command '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & cl.exe /std:c++latest /I ../src /I "C:\Program Files\ (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples/so-1/example_so1.cpp'
