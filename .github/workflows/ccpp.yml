@@ -73,6 +73,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: CI msbuild compatibility check single-objective 
-      script: |
-        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\SDK\include"
+      run: |
+        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
         cl.exe" /std:c++latest /I ../src /I "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples/so-1/example_so1.cpp
