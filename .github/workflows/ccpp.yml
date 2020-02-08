@@ -71,7 +71,13 @@ jobs:
   rem-test0:
     runs-on: windows-2019
     steps:
-    - uses: actions/checkout@v1
-    - name: CI msbuild compatibility check single-objective 
-      run: |
-        cmd.exe /C 'call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & cl.exe /std:c++latest /I ../src examples/so-1/example_so1.cpp'
+      - name: Check out source code
+        uses: actions/checkout@v1
+      - name: Download Internet
+        run: npm install
+      - name: Enable Developer Command Prompt
+        uses: ./
+      - name: Compile and run some C code
+        run: |
+          cl.exe hello.c
+          hello.exe
