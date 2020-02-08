@@ -75,52 +75,10 @@ jobs:
     - name: mkdir
       run:
         cmd.exe /C mkdir include
-    - name: dir include 1
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\*" include
-    - name: dir include 1
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\*" include
-    - name: dir include 1
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\*" include
-    - name: dir include 1
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\*" include
-    - name: dir include 1
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\*" include
-    - name: dir include 1
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\*" include
-    - name: dir include 1
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\*" include
-    - name: dir include 1
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\*" include
-    - name: dir include 1
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\*" include
-    - name: dir include 2
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\*" include
-    - name: dir include 3
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\*" include
-    - name: dir include 4
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\*" include
-    - name: dir include 5
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\*" include
-    - name: dir include 6
+    - name: dir include directory
       run:
         cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
-    - name: dir include 7
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
-    - name: copy include
+    - name: copy include directory
       run:
         cmd.exe /C copy "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
     - name: copy cl.exe
@@ -133,3 +91,15 @@ jobs:
         # cmd.exe /c "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat" "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples/so-1/example_so1.cpp
         # cmd.exe /c powershell.exe "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ; "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples/so-1/example_so1.cpp
         # C:\WINDOWS\system32\WindowsPowerShell\v1.0\powershell.exe  -Command "\"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat\" ; \"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe\" /std:c++latest /I ../src /I 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\' examples/so-1/example_so1.cpp"
+
+  rem-test1:
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@v1
+    - name: vcvarsall
+      run:
+        cmd.exe /C "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+    - name: devenv
+      run:
+        devenv project.sln /Command "File.OpenFile examples/so-1/example_so1.cpp" /Command "Build.Compile" /Command "File.Exit"
+        # cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
