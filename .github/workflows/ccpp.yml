@@ -65,6 +65,13 @@ jobs:
       run: |
         "c:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\msbuild.exe" examples/mo-1/example_mo1.cpp /std:latest /I ../src
 
+  rem-test0:
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@v1
+    - name: rem test 0 
+      run: |
+        cmd.exe /C '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /Y- /I ../src examples/so-1/example_so1.cpp'
 
   rem-test1:
     runs-on: windows-2019
