@@ -61,7 +61,7 @@ jobs:
         cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
     - name: copy include directory
       run:
-        cmd.exe /C copy "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
+        cmd.exe /C xcopy /E "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
     # - name: copy cl.exe
     #   run:
     #     cmd.exe /C copy "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" .
