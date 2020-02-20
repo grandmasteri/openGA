@@ -53,18 +53,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: mkdir
+    - name: mkdir include
       run:
         cmd.exe /C mkdir include
-    - name: dir include directory
-      run:
-        cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
+    # - name: dir include directory
+    #   run:
+    #     cmd.exe /C dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
     - name: copy include directory 1
       run:
         cmd.exe /C xcopy /E "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
     - name: copy include directory 2
       run:
         cmd.exe /C xcopy /E "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\SDK\include\*" include
+    - name: mkdir lib
+      run:
+        cmd.exe /C mkdir lib
+    - name: copy lib directory
+      run:
+        cmd.exe /C xcopy /E "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\lib\*" lib
     # - name: copy cl.exe
     #   run:
     #     cmd.exe /C copy "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" .
@@ -79,7 +85,7 @@ jobs:
         cmd.exe /C tree /F /A
     - name: run cl.exe
       run:
-        cmd.exe /C cl.exe /std:c++latest /I .\src /I .\include /I .\include\ucrt examples/so-1/example_so1.cpp
+        cmd.exe /C cl.exe /std:c++latest /I .\src /I .\include /I .\include\ucrt examples/so-1/example_so1.cpp /link /LIBPATH:.\lib
         # cmd.exe /c '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples/so-1/example_so1.cpp'
         # cmd.exe /c "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat" "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples/so-1/example_so1.cpp
         # cmd.exe /c powershell.exe "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ; "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples/so-1/example_so1.cpp
