@@ -79,7 +79,7 @@ jobs:
         cmd.exe /C tree /F /A
     - name: run cl.exe
       run:
-        cmd.exe /C cl.exe /std:c++latest /I ..\src /I .\include /I .\include\ucrt examples/so-1/example_so1.cpp
+        cmd.exe /C cl.exe /std:c++latest /I .\src /I .\include /I .\include\ucrt examples/so-1/example_so1.cpp
         # cmd.exe /c '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples/so-1/example_so1.cpp'
         # cmd.exe /c "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat" "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples/so-1/example_so1.cpp
         # cmd.exe /c powershell.exe "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ; "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples/so-1/example_so1.cpp
