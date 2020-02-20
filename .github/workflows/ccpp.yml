@@ -82,9 +82,9 @@ jobs:
     - uses: actions/checkout@v1
     - name: CI msbuild compatibility check single-objective 
       run: |
-        cmd.exe /C powershell.exe "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples\so-1\example_so1.cpp
+        # cmd.exe /C powershell.exe "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /I ../src /I "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\" examples\so-1\example_so1.cpp
         # cmd.exe /C 'python.exe --version'
-        # cmd.exe /C 'python.exe aaa.py'
+        cmd.exe /C 'python.exe aaa.py'
         # cmd.exe /C 'dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\SDK\include"'
         # cmd.exe /C '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"'
         # cmd.exe /C '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" /std:c++latest /Yc"stdafx.pch" /Yu"stdafx.h" /FI"stdafx.h" /I ../src examples/so-1/example_so1.cpp'
