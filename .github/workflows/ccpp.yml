@@ -62,15 +62,18 @@ jobs:
     - name: copy include directory
       run:
         cmd.exe /C copy "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\include\*" include
-    - name: copy cl.exe
+    # - name: copy cl.exe
+    #   run:
+    #     cmd.exe /C copy "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" .
+    # - name: copy clui.dll
+    #   run:
+    #     cmd.exe /C copy "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\1033\clui.dll" .
+    - name: copy bin
       run:
-        cmd.exe /C copy "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" .
-    - name: copy clui.dll
+        cmd.exe /C xcopy /E "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\*" .
+    - name: tree
       run:
-        cmd.exe /C copy "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\1033\clui.dll" .
-    - name: dir
-      run:
-        cmd.exe /C dir .
+        cmd.exe /C tree /F /A
     - name: run cl.exe
       run:
         cmd.exe /C cl.exe /std:c++latest /I ../src /I ./include examples/so-1/example_so1.cpp
