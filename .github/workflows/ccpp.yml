@@ -95,7 +95,7 @@ jobs:
     runs-on: windows-2019
     steps:
     - uses: actions/checkout@v1
-    - name: CI msbuild compatibility check single-objective 
+    - name: python.exe aaa.py
       run: |
         cmd.exe /C 'python.exe aaa.py'
         # cmd.exe /C dir 'C:\Program Files (x86)\'
