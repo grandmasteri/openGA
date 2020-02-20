@@ -73,7 +73,7 @@ jobs:
         cmd.exe /C xcopy /E "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\lib\*" lib
     - name: copy lib directory 2
       run:
-        cmd.exe /C xcopy /E " C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm64.microsoft.net.native.compiler\2.2.7-rel-27913-00\tools\arm64\ilc\tools\link\*" lib
+        cmd.exe /C xcopy /E "C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm64.microsoft.net.native.compiler\2.2.7-rel-27913-00\tools\arm64\ilc\tools\link\*" lib
     # - name: copy cl.exe
     #   run:
     #     cmd.exe /C copy "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\VC\bin\cl.exe" .
