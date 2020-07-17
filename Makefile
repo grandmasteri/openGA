@@ -5,9 +5,14 @@
 CXX:=g++
 #CXX:=x86_64-w64-mingw32-g++
 DEBUG_FLAG:= -g -O3
-RELESE_FLAG:= -O3 -s -DNDEBUG
+RELESE_FLAG:= -std=c++11 -I./src
 CURRENT_FLAGS:= $(RELESE_FLAG)
-CURRENT_FLAGS += -std=c++11 -pthread -I./src -Wall -Wconversion -Wfatal-errors -Wextra
+#CURRENT_FLAGS += -Wfatal-errors -pthread # Isaac's additions
+LDFLAGS:= -L$(brew --prefix)/opt/llvm/lib -Wl,-rpath,$(brew --prefix)/opt/llvm/lib
+CPPFLAGS:=-I/usr/local/opt/llvm/include
+CURRENT_FLAGS += $(LDFLAGS) $(CPPFLAGS)
+CURRENT_FLAGS += -g -pthread -DNDEBUG -Wall -Wconversion -Wfatal-errors -Wextra
+# -O3 // makes the error "Illegal instruction: 4" instead of "Segmentation fault: 11"
 BIN:=./bin
 
 LIBS:= # empty
@@ -25,6 +30,11 @@ all:
 	@echo make ex_mo_dtlz2
 	@echo make ex_iga_colors
 	@echo "***********************************************"
+
+IsaacExample:
+	$(CXX) $(CURRENT_FLAGS) examples/IsaacExample.cpp -o $(BIN)/IsaacExample $(LIBS)
+	@echo "-----------------------------------------------"
+	$(BIN)/IsaacExample
 
 ex_so1:
 	$(CXX) $(CURRENT_FLAGS) examples/so-1/example_so1.cpp -o $(BIN)/example_so1 $(LIBS)
