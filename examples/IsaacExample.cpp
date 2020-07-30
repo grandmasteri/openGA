@@ -13,7 +13,7 @@ int numGenes = 0;
 struct Chromosome
 {
 	std::vector<double> paramVec;
-	Chromosome() : paramVec(numGenes) {};
+	//Chromosome() : paramVec(numGenes) {};
 
 	string to_string() const
 	{
@@ -38,8 +38,8 @@ typedef EA::GenerationType<Chromosome,MyMiddleCost> Generation_Type;
 void init_genes(Chromosome& p,const std::function<double(void)> &rnd01)
 {
 	// rnd01() gives a random number in 0~1
-	p.paramVec[0]=-1000+2000*rnd01();
-	p.paramVec[1]=-1000+2000*rnd01();
+	p.paramVec.push_back(-1000+2000*rnd01());
+	p.paramVec.push_back(-1000+2000*rnd01());
 }
 
 bool eval_solution(
@@ -79,9 +79,9 @@ Chromosome crossover(
 	Chromosome X_new;
 	double r;
 	r=rnd01();
-	X_new.paramVec[0]=r*X1.paramVec[0]+(1.0-r)*X2.paramVec[0];
+	X_new.paramVec.push_back(r*X1.paramVec[0]+(1.0-r)*X2.paramVec[0]);
 	r=rnd01();
-	X_new.paramVec[1]=r*X1.paramVec[1]+(1.0-r)*X2.paramVec[1];
+	X_new.paramVec.push_back(r*X1.paramVec[1]+(1.0-r)*X2.paramVec[1]);
 	return X_new;
 }
 

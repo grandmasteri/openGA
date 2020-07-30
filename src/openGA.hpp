@@ -404,6 +404,7 @@ public:
 
 		if(verbose)
 		{
+			cout << "starting solve_init!" << endl;
 			cout<<"**************************************"<<endl;
 			cout<<"*             GA started             *"<<endl;
 			cout<<"**************************************"<<endl;
@@ -415,13 +416,16 @@ public:
 		}
 		Chronometer timer;
 		timer.tic();
-
+		
 		thisGenerationType generation0;
+		cout << "about to init_population!" << endl;
 		init_population(generation0);
+		cout << "finished init_population!" << endl;
 
 		generation_step=0;
 		finalize_objectives(generation0);
-
+		cout << "finished finalize_objectives!" << endl;
+		cout << "is_single_objective(): " << is_single_objective() << endl;
 		if(!is_single_objective())
 		{
 			calculate_N_robj(generation0);
@@ -440,22 +444,30 @@ public:
 				}
 			}
 		}
-		rank_population(generation0); // used for ellite tranfre, crossover and mutation
+		cout << "about to rank population!" << endl;
+		rank_population(generation0); // used for elite tranfer, crossover, and mutation
+		cout << "finished rank_population!" << endl;
 		finalize_generation(generation0);
+		cout << "finished finalize_generation!" << endl;
+		cout << "is_single_objective(): " << is_single_objective() << endl;
 		if(!is_single_objective())
 		{ // muti-objective
 			update_ideal_objectives(generation0,true);
 			extreme_objectives.clear();
 			scalarized_objectives_min.clear();
 		}
+		cout << "0: near end of solve_init!" << endl;
 		generation0.exe_time=timer.toc();
+		cout << "1: near end of solve_init!" << endl;
 		if(!user_request_stop)
 		{
 			generations_so_abs.push_back(thisGenSOAbs(generation0));
 			report_generation(generation0);
 		}
+		cout << "2: near end of solve_init!" << endl;
 
 		last_generation=generation0;
+		cout << "at end of solve_init!" << endl;
 	}
 
 	StopReason solve_next_generation()
@@ -466,7 +478,6 @@ public:
 		thisGenerationType new_generation;
 		transfer(new_generation);
 		crossover_and_mutation(new_generation);
-
 		finalize_objectives(new_generation);
 		rank_population(new_generation);  // used for selection
 		thisGenerationType selected_generation;
@@ -489,6 +500,7 @@ public:
 	StopReason solve()
 	{
 		StopReason stop=StopReason::Undefined;
+		cout << "about to solve_init!" << endl;
 		solve_init();
 		while(stop==StopReason::Undefined)
 			stop=solve_next_generation();
@@ -1573,7 +1585,7 @@ protected:
 
 		if(verbose)
 		{
-			cout<<"Initial population of "<<population<<" was created with "<<total_attempts<<" attemps."<<endl;
+			cout<<"Initial population of "<<population<<" was created with "<<total_attempts<<" attempts."<<endl;
 		}
 	}
 
